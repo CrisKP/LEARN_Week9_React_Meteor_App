@@ -1,4 +1,4 @@
-{
+export default {
   "links" : {
     "next" : "https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-08&end_date=2015-09-09&detailed=false&api_key=bQkJdYfSsRFi6mJluIdu7Ck2H9RAnDsOHBUPcVVG",
     "prev" : "https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-06&end_date=2015-09-07&detailed=false&api_key=bQkJdYfSsRFi6mJluIdu7Ck2H9RAnDsOHBUPcVVG",
