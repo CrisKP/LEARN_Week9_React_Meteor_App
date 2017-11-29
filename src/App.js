@@ -8,14 +8,21 @@ import nasaData from './nasa_Data.js'
 class App extends Component {
   constructor(props) {
     super(props)
+    let today = new Date()
     this.state = {
+      apiKey: "bQkJdYfSsRFi6mJluIdu7Ck2H9RAnDsOHBUPcVVG",
+      startDate: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
+      apiUrl: "https://api.nasa.gov/neo/rest/v1/feed",
       rawData: nasaData,
       asteroids: []
     }
-
   }
+
     componentWillMount(){
-      let nasaData = this.state.rawData.near_earth_objects
+      fetch(`${this.state.apiUrl}?start_date=${this.state.startDate}&api_key=${this.state.apiKey}`).then((rawResponse)=>{
+        return rawResponse.json()
+      }).then((parsedResponse)=>{
+      let nasaData = parsedResponse.near_earth_objects
       let newAsteroids = []
 
       Object.keys(nasaData).forEach((date)=>{
@@ -33,8 +40,8 @@ class App extends Component {
         })
       })
       this.setState({asteroids: newAsteroids})
-
-    }
+    })
+  }
 
   render() {
     return (
@@ -69,7 +76,7 @@ class App extends Component {
                   </tr>
                 )
               })}
-            
+
             </tbody>
           </Table>
         </div>
